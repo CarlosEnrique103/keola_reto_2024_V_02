@@ -1,9 +1,10 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
+const API_URL = process.env.EXPO_PUBLIC_API_URL;
+
 const fetchLogin = createAsyncThunk("auth/fetchLogin", async (loginData) => {
-  console.log("se llamo");
   try {
-    const response = await fetch("https://inclubtest.com:2053/api/token/", {
+    const response = await fetch(`${API_URL}/api/token`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
