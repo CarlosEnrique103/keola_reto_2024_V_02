@@ -1,22 +1,13 @@
-import { StatusBar } from "expo-status-bar";
-import { StyleSheet, Text, View } from "react-native";
-import LoginScreen from "./src/screens/LoginScreen";
-import HomeScreen from "./src/screens/HomeScreen";
+import { StyleSheet } from "react-native";
 import Colors from "./src/constants/Colors";
-
 import { Provider } from "react-redux";
 import { store } from "./src/store";
+import MainScreen from "./src/screens/MainScreen";
 
 export default function App() {
-  const isLoggedIn = false;
-
   return (
     <Provider store={store}>
-      <View style={styles.container}>
-        <StatusBar style="auto" />
-        {!isLoggedIn && <LoginScreen />}
-        {isLoggedIn && <HomeScreen />}
-      </View>
+      <MainScreen />
     </Provider>
   );
 }

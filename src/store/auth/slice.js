@@ -1,8 +1,8 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
 const fetchLogin = createAsyncThunk("auth/fetchLogin", async (loginData) => {
+  console.log("se llamo");
   try {
-    console.log({ loginData, send: JSON.stringify(loginData) });
     const response = await fetch("https://inclubtest.com:2053/api/token/", {
       method: "POST",
       headers: {
