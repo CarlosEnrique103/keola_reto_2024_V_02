@@ -1,20 +1,17 @@
 import { useState } from "react";
-import {
-  StyleSheet,
-  View,
-  Text,
-  ScrollView,
-  TouchableWithoutFeedback,
-} from "react-native";
+import { Alert, StyleSheet, View, Text, ScrollView } from "react-native";
 import { TextInput } from "react-native-paper";
 import Button from "../Button";
 // import { useNavigation } from "@react-navigation/native";
 import Colors from "../../constants/Colors";
+import useAuthController from "../../view-controllers/useAuthController";
 
 const LoginForm = () => {
+  const { fetchLogin } = useAuthController();
+
   const [data, setData] = useState({
-    email: "",
-    password: "",
+    username: "master",
+    password: "Inclub1245#",
   });
 
   const handleChangeText = (key: string, value: string) =>
@@ -24,10 +21,10 @@ const LoginForm = () => {
 
   const handleSubmit = () => {
     if (Object.values(data).some((value) => !value)) {
-      console.log("no hay valores");
+      Alert.alert("Todos los campos deben ser llenados.");
       return;
     }
-    console.log("Sending data", { data });
+    fetchLogin(data);
   };
 
   return (
@@ -42,11 +39,12 @@ const LoginForm = () => {
           </View>
           <TextInput
             mode="outlined"
-            label="Email:"
-            value={data.email}
+            label="Username:"
+            value={data.username}
             style={styles.input}
-            keyboardType="email-address"
-            onChangeText={(value) => handleChangeText("email", value)}
+            onChangeText={(value) =>
+              handleChangeText("username", value.toLowerCase())
+            }
             theme={{
               colors: {
                 primary: Colors.light.primaryColor,
@@ -59,7 +57,9 @@ const LoginForm = () => {
             label="Contraseña:"
             value={data.password}
             style={styles.input}
-            onChangeText={(value) => handleChangeText("password", value)}
+            onChangeText={(value) =>
+              handleChangeText("password", value.toLowerCase())
+            }
             right={
               <TextInput.Icon
                 icon={!showPassword ? "eye-off" : "eye"}
