@@ -1,9 +1,10 @@
 import { StyleSheet, StatusBar, View, Text } from "react-native";
 import useAuthController from "../view-controllers/useAuthController";
-import HomeScreen from "./HomeScreen";
 import LoginScreen from "./LoginScreen";
 import Colors from "../constants/Colors";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
+import HomeNavigation from "../navigation/HomeNavigation";
+import HomeScreen from "./HomeScreen";
 
 const MainScreen = () => {
   const { data } = useAuthController();
@@ -16,10 +17,10 @@ const MainScreen = () => {
   }, [data]);
 
   return (
-    <View style={styles.container}>
+    <React.Fragment>
       {!isLoggedIn && <LoginScreen />}
-      {isLoggedIn && <HomeScreen />}
-    </View>
+      {isLoggedIn && <HomeNavigation />}
+    </React.Fragment>
   );
 };
 
@@ -28,7 +29,8 @@ export default MainScreen;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: Colors.light.background,
+    width: "100%",
+    backgroundColor: "yellow",
     alignItems: "center",
     justifyContent: "center",
   },

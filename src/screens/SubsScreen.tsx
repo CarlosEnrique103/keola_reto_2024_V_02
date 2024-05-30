@@ -1,15 +1,15 @@
 import { StyleSheet, View, Text } from "react-native";
 import Colors from "../constants/Colors";
 
-const HomeScreen = () => {
+const SubsScreen = () => {
   return (
     <View style={styles.container}>
-      <Text>Subs</Text>
+      <Text>SubsScreen</Text>
     </View>
   );
 };
 
-export default HomeScreen;
+export default SubsScreen;
 
 const styles = StyleSheet.create({
   container: {
