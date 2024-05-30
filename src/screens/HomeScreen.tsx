@@ -1,21 +1,25 @@
-import { StyleSheet, View, Text } from "react-native";
+import { StyleSheet, Text } from "react-native";
 import Colors from "../constants/Colors";
 import { useEffect } from "react";
 import useSubsController from "../view-controllers/useSubsController";
+import { SafeAreaView } from "react-native-safe-area-context";
+import LottieView from "lottie-react-native";
 
 const HomeScreen = () => {
   const { fetchSubs } = useSubsController();
-
-  // console.log({ subsController });
 
   useEffect(() => {
     fetchSubs();
   }, []);
 
   return (
-    <View style={styles.container}>
-      <Text>Subs</Text>
-    </View>
+    <SafeAreaView style={styles.container}>
+      <LottieView
+        autoPlay
+        style={styles.animation}
+        source={require("../assets/animations/welcome.json")}
+      />
+    </SafeAreaView>
   );
 };
 
@@ -28,5 +32,9 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     width: "100%",
+  },
+  animation: {
+    width: 300,
+    height: 300,
   },
 });
