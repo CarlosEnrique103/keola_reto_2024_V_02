@@ -1,7 +1,17 @@
 import { StyleSheet, View, Text } from "react-native";
 import Colors from "../constants/Colors";
+import { useEffect } from "react";
+import useSubsController from "../view-controllers/useSubsController";
 
 const HomeScreen = () => {
+  const { fetchSubs } = useSubsController();
+
+  // console.log({ subsController });
+
+  useEffect(() => {
+    fetchSubs();
+  }, []);
+
   return (
     <View style={styles.container}>
       <Text>Subs</Text>
